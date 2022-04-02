@@ -1,0 +1,120 @@
+% !TEX program = xelatex
+
+\documentclass{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[left=1.0cm,right=1.0cm,top=1.3cm,bottom=1.3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{ctex}
+\usepackage{xpatch}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amssymb,mathrsfs,amsmath}
+\usepackage{bbding}
+\usepackage{mathrsfs}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+\newtheoremstyle{break}
+    {\topsep}{\topsep}%
+    {\itshape}{}%
+    {\bfseries}{}%
+    {\newline}{}%
+\theoremstyle{break}
+\newtheorem*{solution*}{\textbf{Solution:} }
+%\newtheorem*{proof*}{\textbf{Proof:}}
+\makeatletter
+
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+
+\pagestyle{fancy} 
+\lhead{Name}
+\chead{\textbf{Discrete Mathematics:  Homework 9}}
+\rhead{2020.5.7}
+\renewcommand{\baselinestretch}{1.5}
+
+\title{Discrete Mathematics:  Homework 9}
+\author{Name  \quad  \quad ID: Number}
+\date{2020.5.7}
+
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+        \item Suppose that a language has 38 letters in its alphabet $\mathcal{A}$.  Suppose that $A, B \in \mathcal{A}$.  Thelength of a word is the number of letters it has.
+        \begin{enumerate}
+                \item How may words have length 7, having A as the third letter ? 
+                \item How many words of length 4 such that the letter B appears exacly twice?
+        \end{enumerate}
+        \begin{solution*}
+                \begin{enumerate}
+                        \item 
+                        For the rest of 6 numbers, each digit has 38 possibilities. And for the third digit, it has only one possibility 'A' .\\
+                        So the answer is,
+                        $  38^6 $
+                        \item
+                        For 4 digits, there has 2 digits which can be 'B', so the possibility is $C_4^2$, for the rest 2, each digit has 37 possibilities. (Because they can't be 'B') \\
+                        So the answer is $C_4^2 \cdot 37^2$
+                \end{enumerate}
+        \end{solution*}
+        \vspace{10mm}
+        \item A  manager  selects  a  football  team  from  a  squad  of  20  players.   The  squad  has  17 outfield players and 3 goalkeepers.  The team should have 1 goalkeeper and 10 outfieldplayers.
+        \begin{enumerate}
+                \item How many selections are possible?  (the selection does NOT include shirt number,the position of outfield players, etc...)
+        \end{enumerate}
+        \begin{solution*}
+                 $$C_{17}^{10} \cdot C_{3}^{1}$$
+        \end{solution*}
+        \newpage
+        \item Suppose  we  have  a  bowl  with  red  marbles,  green  marbles,  yellow  marbles,  purplemarbles and blue marbles in it (the number of marbles of a given colour can be 0).Marbles of the same colour are indistinguishable.
+        \begin{enumerate}
+                \item If the bowl has ten marbles, how many possibilities are there?
+                \item If the bowl has 13 marbles and the bowl does not contain marbles of all 5 colours,how many possibilitles are there?
+        \end{enumerate}
+        \begin{proof}
+                \begin{enumerate}
+                        \item For ten marbles, we can consider:
+                        | o o o o o | o | o o | o o |, \\
+                        each '|' has 14 slot, so the answer is
+                        $$ C_{14}^4 = 1001 $$
+                        \item The answer is all possibilities without 5 
+                        $$  C_{17}^4 - C_{12}^4 = 1885    $$
+                \end{enumerate}
+        \end{proof}
+        \vspace{10mm}
+        \item Prove  that  for  any  positive  integer $n$,  there  exists  infinitely  many  positive  integers $k$, such that $kn$ has only 0 and 7 in its decimal expansion (for example:  70700077).Explain your answer with as much detail as possible
+        \begin{proof}
+                For integers 7, 77, 777,$\underbrace{777 \dots 777}_{n+1}$, there at least have 2 intergers such that $n \bmod \underbrace{77 \dots 77}_{a} $ and $n \bmod \underbrace{77 \dots 77}_{b}$ by pigeonhole principle.\\
+                The same holds for $\underbrace{777 \dots 777}_{n+2} \cdots \underbrace{777 \dots 777}_{2n+2}$ and $\underbrace{777 \dots 777}_{2n+3} \cdots \underbrace{777 \dots 777}_{3n+3}$ and $\dots$\\
+                So we can find infinite $a,b \in \{ 77 \cdots 77 \}$ such that $n \bmod a$  and $n \bmod b$ \\
+                we also have $n \bmod |a-b|$ and $|a-b| \in \{ 7 \dots 0 \dots 7\}$\\
+                So there are infinite $k$ 
+        \end{proof}
+\end{enumerate}
+\end{document}

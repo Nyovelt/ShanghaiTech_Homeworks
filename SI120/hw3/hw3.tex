@@ -1,0 +1,139 @@
+% !TEX program = xelatex
+
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[left=1.0cm,right=1.0cm,top=1.3cm,bottom=1.3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{ctex}
+\usepackage{xpatch}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage{amsfonts}
+
+
+\newtheoremstyle{break}
+    {\topsep}{\topsep}%
+    {\itshape}{}%
+    {\bfseries}{}%
+    {\newline}{}%
+\theoremstyle{break}
+\newtheorem*{solution*}{\textbf{Solution:} }
+%\newtheorem*{proof*}{\textbf{Proof:}}
+\makeatletter
+
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+
+\pagestyle{fancy}
+\lhead{Name}
+\chead{\textbf{Discrete Mathematics:  Homework 3}}
+\rhead{2020.3.23}
+\renewcommand{\baselinestretch}{1.5}
+
+\title{Discrete Mathematics:  Homework 3}
+\author{Name  \quad  \quad ID: Number}
+\date{2020.3.23}
+
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+        \item Let P(x) =" x is  a  person”, L(x, y)  =  “x loves y”  and E(x, y)  =“x=y".
+        \\Translate the following statements into formulas:
+        \begin{enumerate}
+                \item “Every person loves some person.”
+                \item “Every person loves some other person.”
+                \item “There is a person who is loved by every person.”
+                \item “There is a person who is loved by every other person.”
+        \end{enumerate}
+        \begin{solution*}
+                \leavevmode
+                \begin{enumerate}
+                        \item \[
+                                \forall x P(x)\land \exists y P(y) \land L(x,y) 
+                        \]
+                        \item \[
+                                \forall x P(x) \land \exists y P(y) \land \lnot E(x,y) \land L(x,y)
+                        \]
+                        \item \[
+                                \exists x P(x) \land \forall y P(y) \land L(y,x)
+                        \]
+                        \item \[
+                                \exists x P(x) \land \forall y P(y)  \land \lnot E(x,y)  \land L(y,x)
+                        \]
+                \end{enumerate}
+        \end{solution*}
+
+        \newpage
+
+        \item Determine if the following formulas are logically valid, satisfiable or unsatisfiable.
+        \begin{enumerate}
+                \item $ (\exists x P(x) \leftrightarrow \exists x Q(x)) \to \exists x (P(x) \leftrightarrow Q(x))  $
+                \item $\exists  x (\textbf{T} \lor P(x) \to \textbf{F})$
+                \item $\forall x ((P(x) \lor \lnot \exists y (Q(y) \land \lnot Q(y))))$
+                \item $ \exists x P(x) \to P(0)  $
+        \end{enumerate}
+        \begin{solution*}\leavevmode
+                \begin{enumerate}
+                        \item if $\exists x P(x) \leftrightarrow \exists x Q(x) $ is True, which indicates $P(x) = T, Q(x) = T \quad or \quad P(x)=F,Q(x)=F$. Hence, $\exists x (P(x) \leftrightarrow Q(x)) $ is T. So it's T in every interpretation. \\ \textbf{It's logically valid.}
+                        \newline
+                        \item $T \lor P(x) \equiv T $ ,so $\exists  x (\textbf{T} \lor P(x) \to \textbf{F})$ is F in every interpretation. \\ \textbf{It's unsatisfiable.}
+                        \newline
+                        \item $\lnot \exists y (Q(y) \land \lnot Q(y)) $is always T. $\forall x ((P(x) \lor \lnot \exists y (Q(y) \land \lnot Q(y))))$ is always T. \\\textbf{It's logically valid.}
+                        \newline
+                        \item when $P(0) = T, \exists x P(x) \to P(0) \equiv T$,when $P(0) = F, \exists x = 0, $ such that, $P(x) = F$ . So it's T in every interpretation.  \\ \textbf{It's logically valid.}
+                        \newline
+                \end{enumerate}
+        \end{solution*}
+        \newpage
+        \item Show that $\exists x(P(x) \lor Q(x) ) \equiv \exists x P(x) \lor \exists x Q(x)$
+        \begin{solution*}
+                \leavevmode
+                \begin{enumerate}[(1)]
+                        \item \textbf{Show that $\exists x(P(x) \lor Q(x) ) \to \exists x P(x) \lor \exists x Q(x)$ is logically valid.}\\
+                        Suppose that  $\exists x P(x) \lor \exists x Q(x)$ is F in an interpretation I\\
+                        $P(x)$ is F and $Q(x)$ is F in an x in I\\
+                        $x(P(x) \lor Q(x) )$ is F in the x in I\\
+                        $\exists x(P(x) \lor Q(x) )$ is F in I\\
+                        \item \textbf{Show that $\exists x P(x) \lor \exists x Q(x) \to \exists x(P(x) \lor Q(x) )$ is logically valid.}\\
+                        Suppose that $\exists x P(x) \lor \exists x Q(x)$ is F in an interpretation in I\\
+                        $P(x) \lor Q(x)$ is F in an x in I\\
+                        $P(x)$ is F and $Q(x)$ is F in the x in I\\
+                        $P(x)$ is F in an x in I and Q(x) is F in an x in I\\
+                        $\exists x P(x) \lor \exists x Q(x) $ is F in I
+                \end{enumerate}
+        \end{solution*}
+        \leavevmode
+        \item Show that $\forall xP(x) \lor \forall x Q(x)  \Rightarrow \forall x ((P(x) \lor Q(x)))$
+        \begin{solution*}
+        \leavevmode
+                \textbf{Suppose that the left hand side is true in an interpretation I}\\
+                $\forall xP(x) \lor \forall x Q(x)$ is T\\
+                P(x) is T, Q(x) is T or P(x) is T, Q(x) is F or P(x) is F, Q(x) is T in every x in I\\
+                P(x) $\lor$ Q(x) is T in every x in I\\
+                $\forall x (P(x) \lor Q(x))$ is T\\
+        \end{solution*}
+        
+        \item Show that $\exists x P(x) \land \exists x Q(x) \Rightarrow \exists x (P(x) \land Q(x))$
+        \begin{solution*}
+                \textbf{Suppose that the left hand side is true in an interpretation I}\\
+                $\exists x P(x) \land \exists x Q(x)$ is T \\
+                P(x) is T and Q(x) is T for the x in I \\
+                $P(x) \land Q(x)$ is T for the x in I \\
+                $\exists x (P(x) \land Q(x))$ is T in I\\
+        \end{solution*}
+
+        \newpage
+        \item Show that $\forall x (P(x) \leftrightarrow Q(x)) \Rightarrow \exists P(x) \leftrightarrow \exists x Q(x)$
+        \begin{solution*}
+                \textbf{Suppose that the left hand side is true in an interpretation I}\\
+                $\forall x (P(x) \leftrightarrow Q(x)) $ is T\\
+                P(x) is T , Q(x) is T or P(x) is F, Q(x) is F in every x in I\\
+                P(x) $\leftrightarrow $ Q(x) is T in an x in I\\
+                $\exists P(x) \leftrightarrow \exists x Q(x)$ is T in I\\
+        \end{solution*}
+\end{enumerate}
+\end{document}

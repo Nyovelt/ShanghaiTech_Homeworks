@@ -1,0 +1,269 @@
+% !TEX program = xelatex
+
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[left=1.0cm,right=1.0cm,top=1.3cm,bottom=1.3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+%\usepackage{ctex}
+\usepackage{xpatch}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage{amsfonts}
+
+
+\newtheoremstyle{break}
+    {\topsep}{\topsep}%
+    {\itshape}{}%
+    {\bfseries}{}%
+    {\newline}{}%
+\theoremstyle{break}
+\newtheorem*{solution*}{\textbf{Solution:} }
+%\newtheorem*{proof*}{\textbf{Proof:}}
+\makeatletter
+
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+
+\pagestyle{fancy}
+\lhead{Your Name}
+\chead{\textbf{Discrete Mathematics:  Homework 2}}
+\rhead{2020.3.19}
+\renewcommand{\baselinestretch}{1.5}
+
+\title{Discrete Mathematics:  Homework 2}
+\author{Your Name \quad  \quad ID: Your ID}
+\date{2020.3.19}
+
+
+
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item 
+        Let p and q be  two  propositional  variables.   Up  to  logical  equivalence  (i.e.,  if A $\equiv$ B, then we consider A and B has the same formula), how many different formulas in p, q are there?  Write down all of them.
+        \begin{solution*}
+            There are 15 different formulas. \newline
+            \begin{center}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    $\lnot ( \lnot p ) \equiv p $ & $ p \land p \equiv p$  & $p \lor p \equiv p $\\
+                    \hline
+                    $p \land q \equiv q \land p$ & $ p \lor q \equiv q \lor p $ & $ \lnot(p \land q)\equiv (\lnot p)\lor (\lnot q)$\\
+                    \hline
+                    $ \lnot(p \lor q)\equiv (\lnot p)\land (\lnot q)$ & $p \lor ( p \land q) \equiv p$ & $p \lor ( p \land q) \equiv p$\\
+                    \hline
+                    $p \to q \equiv \lnot p \lor q$ & $p \to q \equiv \lnot q \land \lnot q$ & $p\leftrightarrow q \equiv (\lnot p \lor q) \land \lnot(p \lor \lnot q ) $\\
+                    \hline
+                    $p\leftrightarrow q \equiv ( p \land q) \lor (\lnot p \land \lnot q ) $ & $p\leftrightarrow q \equiv (p \to q ) \land ( q \to p) $ & $ p \leftrightarrow q \equiv \lnot q \leftrightarrow \lnot p$\\
+                    \hline
+                \end{tabular}
+            \end{center}
+        \end{solution*}
+        
+        \newpage
+        \item 
+        Let ↑ be a binary operation defined by the following truth table:
+        \newline
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                p &q &p ↑ q\\
+                \hline
+                T &T& F\\
+                \hline
+                T& F &T\\
+                \hline
+                F& T& T\\
+                \hline
+                F &F &T\\
+                \hline
+            \end{tabular}
+        \end{center}
+        Represent every formula in Question 1 with an expression where the only operation is ↑.  For
+        example,  for  the  formula  ¬p $\lor$ ¬q,  we  have  the  representation  ¬p $\lor$ ¬q  $\equiv$ p  ↑ q,  where  
+        the only operation in the right-hand expression p ↑ q  is ↑ and none of the other operations such
+        as $\lnot$, $\land$, $\lor$, $\to$ or $\leftrightarrow$ appears.
+        \begin{solution*}\leavevmode\\
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                1 & $\lnot ( \lnot p ) \equiv p $ &$\lnot ( \lnot p) \equiv  p$ \\
+                \hline
+                2 &  $p \land p \equiv p$ &$p \land p \equiv p $ \\
+                \hline
+                3 &  $p \lor p \equiv p $ & $p \lor p \equiv p$ \\
+                \hline
+                4 & $p \land q \equiv q \land p$ & $p \land q \equiv (p \uparrow q ) \uparrow (p \uparrow q)$\\
+                \hline
+                5 & $ p \lor q \equiv q \lor p $ & $p \lor q \equiv  (p \uparrow   p) \uparrow (q \uparrow q)$  \\
+                \hline
+                6 & $ \lnot(p \land q)\equiv (\lnot p)\lor (\lnot q)$ & $\lnot(p \land q)\equiv  p \uparrow q$ \\
+                \hline
+                7 & $ \lnot(p \lor q)\equiv (\lnot p)\land (\lnot q)$ & $\lnot(p \lor q)\equiv (p \uparrow p) \uparrow (q \uparrow q) \uparrow (p \uparrow p) \uparrow (q \uparrow q)  $\\
+                \hline
+                8 & $p \lor ( p \land q) \equiv p$ & $p \lor ( p \land q) \equiv p$  \\
+                \hline
+                9 & $p \lor ( p \land q) \equiv p$ & $p \lor ( p \land q) \equiv p$ \\
+                \hline
+                10 & $p \to q \equiv \lnot p \lor q$ & $p \to q \equiv p \uparrow (q \uparrow q) $ \\
+                \hline
+                11 & $p\leftrightarrow q \equiv (\lnot p \lor q) \land \lnot(p \lor \lnot q ) $ & $p\leftrightarrow q \equiv  (p \uparrow q) \uparrow (p \uparrow p) \uparrow (q \uparrow q)$\\
+                \hline
+                \end{tabular}
+        \end{center}
+        \end{solution*}
+        \newpage
+
+        \item 
+        Show that (P $\land$ Q $\land$ S) $\lor$ (P $\land$¬Q $\land$ ¬R) $\lor$ (P $\land$ Q $\land$ $\lnot$ S) $\lor$ $\lnot$  (P $\land$ R $\to$ Q) $\equiv$ P using
+    the  logical  equivalences on  page  8-10 of  lec3.pptx.  (Hint:  see  page  11,  12 for  an 
+    example)
+    \begin{solution*}
+        \begin{equation}
+            \begin{aligned}
+                &\quad (P \land Q \land S) \lor (P \land \lnot Q \land \lnot R) \lor (P \land Q \land \lnot S) \lor \lnot(P \land R \to Q) \\
+                &\equiv (P \land Q \land S) \lor ( P \land Q \land \lnot S) \lor (P \land \lnot Q \land \lnot R) \lor ( P \land R \land \lnot Q ) \\
+                & \equiv(P \land Q) \lor ( P \land \lnot Q \land \lnot R) \lor ( P \land R \land \lnot Q ) \\
+                & \equiv(P \land \lnot Q \land \lnot R) \lor (P \land \lnot Q \land R) \lor (P \land Q) \\
+                &\equiv (P \land Q) \lor (P \land \lnot Q)\\
+                & \equiv P
+            \end{aligned} 
+        \end{equation}
+    \end{solution*}
+
+\vspace{50mm}
+
+    \item 
+    Show that $(P \lor Q \to R \land S ) \land (S \lor W \to U) \land P \Rightarrow U \lor V$ 
+    using the tautological implications  (and  the  resulting  valid  argument  forms)  on  page  3  of  lec4.pptx.   (Hint:  
+    see page 12, 13 for an example)
+    
+    \begin{solution*}
+        \begin{equation}
+            \begin{aligned}
+                & \quad (P \lor Q \to R \land S ) \land (S \lor W \to U) \land P \\
+                & \equiv (\lnot (P \lor Q) \lor (R \land S) \land (\lnot S \land \lnot W \lor U)) \\
+                & \equiv (\lnot P \land \lnot Q \land P) \lor  (R \land S  \land P) \land (\lnot S \land \lnot W \lor U) \\
+                & \equiv (R \land S \land P \land \lnot S \land \lnot W ) \lor (R \land S \land P \land U) \\
+                & \equiv R \land S \land P \land U \\
+                & \Rightarrow U \\
+                & \Rightarrow U \lor V\\
+            \end{aligned}
+        \end{equation}
+    \end{solution*}
+    \newpage
+    \item 
+        Use the tautological implications (and the resulting valid argument forms) on
+    page 3 of lec4.pptx to show that the premises If it does not rain or if it is not foggy, then
+    the sailing race will be held and the lifesaving demonstration will go on," If the sailing race
+    is held, then the trophy will be awarded," and " The trophy was not awarded" imply "the
+    conclusion It rained."
+    \begin{solution*}\leavevmode
+        \begin{enumerate}[]
+            \item p: It rained. 
+            \item q: It's foggy.
+            \item r: The sailing race will be held.
+            \item s: The lifesaving demonstration will go on.
+            \item t: The trophy will be awarded.
+        \end{enumerate}
+        so, we have
+
+            \begin{equation}
+                \begin{aligned}
+                    \lnot p \lor \lnot q &\to r \land s \\
+                    r &\to t \\
+                    \lnot t &\Rightarrow p\\
+                \end{aligned}
+        \end{equation}
+        so,
+        \begin{equation*}
+            \begin{aligned}
+                & \quad (\lnot p \lor \lnot q \to r \land s) \land (r \to t) \land (\lnot t) \\
+                & \equiv( p \land q \lor r \land s )\land (\lnot r \lor t) \land \lnot t \\
+                & \equiv( p \land q \lor r \land s) \land ( \lnot r \land \lnot t) \\
+                & \Rightarrow p
+            \end{aligned}
+        \end{equation*}
+    \end{solution*}
+
+
+    \newpage
+    \item   Suppose that the following two premises are true:
+    \begin{enumerate}
+        \item  Math is hard or Leibniz doesn't like Math";
+        \item  If SI120 is easy, then Math is not hard".
+    \end{enumerate}
+    Which of the following conclusions are true under the above premises?
+    \begin{enumerate}
+        \item  If Leibniz likes Math, then SI120 is not easy."
+        \item  If SI120 is not easy, then Leibniz doesn't like Math."
+        \item  Math is not hard or SI120 is not easy."
+        \item Leibniz doesn't like Math, then either SI120 is not easy or Math is not hard."
+    \end{enumerate}
+    \textbf{Justify your answers.}
+    \begin{solution*}\leavevmode\\
+        \begin{enumerate}[]
+            \item p: Math is hard.
+            \item q: Leibniz like Math.
+            \item r: SI120 is easy.
+        \end{enumerate}
+        so, we have
+        \begin{equation*}
+            \begin{aligned}
+                p &\lor \lnot q \\
+                r &\to \lnot p \\
+            \end{aligned}
+        \end{equation*}
+        \begin{enumerate}
+            \item  
+            \begin{equation*}
+                \begin{aligned}
+                    & \quad (p \lor \lnot q) \land (r \to \lnot p) \Rightarrow (q \to \lnot r) \\
+                    & let \quad A = ( p \lor \lnot q) \land (r \to \lnot p) ,  B = (q \to \lnot r) \\
+                    & A^{-1}(T) = (T,F,F),(T,F,T),(T,T,F),(F,F,F),(F,F,T) \\
+                    & B^{-1}(T) = (T,T,F),(F,T,F),(F,F,F),(T,F,F),(T,F,T),(F,F,T) \\              
+                \end{aligned}
+            \end{equation*}
+            so the conclusion is \textbf{true} .
+            \item 
+            \begin{equation*}
+                \begin{aligned}
+                    & \quad (p \lor \lnot q) \land (r \to \lnot p) \Rightarrow (\lnot r \to \lnot q) \\    
+                    & (p \land \lnot q) \land ( \lnot r \lor \lnot q) \land \lnot r \land q \\
+                    & \equiv (p \land \lnot q) \land ((\lnot r \land \lnot r) \lor (\lnot q \land \lnot r)) \land q \\
+                    & \equiv (p \land \lnot q ) \land q \\
+                    & \equiv F
+                \end{aligned}
+            \end{equation*}
+            so the conclusion is \textbf{true} .
+            \item 
+            \begin{equation*}
+                \begin{aligned}
+                    & \quad (p \lor \lnot q) \land (r \to \lnot p) \Rightarrow (\lnot p \lor\lnot r) \\ 
+                    & let \quad A = ( p \lor \lnot q) \land (r \to \lnot p) ,  B = (\lnot p \lor\lnot r) \\
+                    & A^{-1}(F) = (T,T,T),(T,F,T),(F,T,F),(F,T,T)\\
+                    & B^{-1}(F) = (T,T,T),(T,F,T) \\    
+                \end{aligned}
+            \end{equation*}
+            so the conclusion is \textbf{true} .
+            \item 
+            \begin{equation*}
+                \begin{aligned}
+                    & \quad (p \lor \lnot q) \land (r \to \lnot p) \Rightarrow \lnot q \to (\lnot r \lor \lnot p) \\ 
+                    & \lnot q \to (\lnot r \lor \lnot p)  \equiv q \lor  \lnot r \lor \lnot p\\
+                    & let \quad A = ( p \lor \lnot q) \land (r \to \lnot p) ,  B =  q \lor  \lnot r \lor \lnot p\\
+                    & A^{-1}(F) = (T,T,T),(T,F,T),(F,T,F),(F,T,T)\\
+                    & B^{-1}(F) = (T,F,T) \\    
+                \end{aligned}
+            \end{equation*}
+            so the conclusion is \textbf{true} .
+        \end{enumerate}
+    \end{solution*}
+
+
+    \end{enumerate}
+    \end{document}

@@ -1,0 +1,75 @@
+% !TEX program = xelatex
+
+\documentclass{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[left=1.0cm,right=1.0cm,top=1.3cm,bottom=1.3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{ctex}
+\usepackage{xpatch}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amssymb,mathrsfs,amsmath}
+\usepackage{bbding}
+\usepackage{mathrsfs}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+\newtheoremstyle{break}
+    {\topsep}{\topsep}%
+    {\itshape}{}%
+    {\bfseries}{}%
+    {\newline}{}%
+\theoremstyle{break}
+\newtheorem*{solution*}{\textbf{Solution:} }
+%\newtheorem*{proof*}{\textbf{Proof:}}
+\makeatletter
+
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+
+\pagestyle{fancy} 
+\lhead{Name}
+\chead{\textbf{Discrete Mathematics:  Homework 13}}
+\rhead{2020.6.4}
+\renewcommand{\baselinestretch}{1.5}
+
+\title{Discrete Mathematics:  Homework 13}
+\author{Name  \quad  \quad ID: Number}
+\date{2020.6.4}
+
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+        \item  Is J(5,2,0) planar? Give a proof of your answer.
+        \begin{proof}
+                
+        \end{proof}
+\end{enumerate}
+\end{document}

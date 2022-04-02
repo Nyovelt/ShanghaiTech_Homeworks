@@ -1,0 +1,152 @@
+% !TEX program = xelatex
+
+\documentclass{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[left=1.0cm,right=1.0cm,top=1.3cm,bottom=1.3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{ctex}
+\usepackage{xpatch}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amssymb,mathrsfs,amsmath}
+\usepackage{bbding}
+\usepackage{mathrsfs}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+\newtheoremstyle{break}
+    {\topsep}{\topsep}%
+    {\itshape}{}%
+    {\bfseries}{}%
+    {\newline}{}%
+\theoremstyle{break}
+\newtheorem*{solution*}{\textbf{Solution:} }
+%\newtheorem*{proof*}{\textbf{Proof:}}
+\makeatletter
+
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+
+\pagestyle{fancy} 
+\lhead{Name}
+\chead{\textbf{Discrete Mathematics:  Homework 11}}
+\rhead{2020.5.21}
+\renewcommand{\baselinestretch}{1.5}
+
+\title{Discrete Mathematics:  Homework 11}
+\author{Name  \quad  \quad ID: Number}
+\date{2020.5.21}
+
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+        \item A group of n students is assigned seats for each of two classes in the same classroom. How many ways can these seats be assigned if no student is assigned the same seat for both classes?
+        \begin{solution*}
+                For n elements, use the \textbf{Derangement Fomular}:
+                \[
+                        D_n = \lfloor  \frac{n!}{e} + 0.5 \rfloor
+                \]
+                consider the first seating, we have $n!$ ways to sit.\\
+                So, the answer is $n! \cdot \lfloor  \frac{n!}{e} + 0.5 \rfloor$
+        \end{solution*}
+        \vspace{10mm}
+        \item Suppose that a park has 10 ponds and 17 birds sitting on the ponds.  No two ponds are exactly the same and no two birds are exactly the same, so we countthem separately.  Each pond has at least one bird.  How many possibilities?  You may leave your answer in reduced form.
+        \begin{solution*}
+                When considering put 17 different birds into 10 same ponds, ww can use \textbf{Stirling Number of the Second Kind}.\\
+                $$S(n,r) = S(n-1,r-1) + S(n-1,r) \cdot r = \frac{1}{m!} \sum_{k=0}^{m} C_m^k(m-k)^r (-1)^k, n > r>1 $$
+                And, $S(16,10)  = \frac{1}{16!} \sum_{k=0}^{16} C_{16}^k(16-k)^{10} (-1)^{k}$ \\
+                Using \textbf{multiply principle}, we have the answer $10! \frac{1}{16!} \sum_{k=0}^{16} C_{16}^k(16-k)^{10} (-1)^{k}$
+        \end{solution*}
+        \vspace{10mm}
+        \item Suppose we have just 3 yuan coins, 4 yuan coins , 7 yuan coins and 9 yuan coins.  How many ways to make 23 yuan?\\
+        \begin{solution*}
+                Consider $f(x) = (1 + x^3 + x^6 + \cdots)(1 + x^4 + x^12 + \cdots)(1 + x^7 + x^14 + \cdots)(1 + x^9 + x^18 + \cdots)$\\
+                The solution is $r$ where $f(x) = \dots + rx^23 + \dots$\\
+                By \textbf{Wolfram Alpha}, we have $r = 8 $
+        \end{solution*}
+        \vspace{10mm}
+        \item Solve the recurrence relation $h_n=h_{n−1}+ 9h_{n−2}−9h_{n−3},h_0= 0, h_1= 1$ and $h_2= 2$
+        \begin{solution*}
+                Consider the equation $x^3 - x^2 - 9x + 9 = 0$\\
+                then we have $x_1=1 , x_2=3, x_3 = -3$\\
+                let $h_n = c_1 + c_23^n + c_3(-3)^n$\\
+                $h_0 = c_1 + c_2 + c_3 = 0$\\
+                $h_1 = c_1 + 3c_2 - 3c_3 = 1$\\
+                $h_2 = c_1 + 9c_2 + 9c_3= 2$\\
+                we have the solution:\\
+                $ f(x)=\left\{
+                \begin{aligned}
+                c_1 = - \frac14\\
+                c_2 = \frac13 \\
+                c_3 = -\frac{1}{12}
+                \end{aligned}
+                \right.
+                $\\
+                so the answer is, $h_n = -\frac14 + 3^{n} - \frac{1}{12}(-3)^n $
+                        
+                       
+
+        \end{solution*}
+        \vspace{10mm}
+        \item Solve  the  recurrence  relation $h_n= 3h_{n−2}−2h_{n−3}.h_0=  1,h_1=  0 $ and $h_2= 0$
+        \begin{solution*}
+        $h_n - 3h_{n-2} + 2h_{n-3} = 0$\\
+        we can solve the equation:\\
+        $x^2 - 3x + 2 = 0$
+        we have $x_1 = 1$ and $x_2 = -2$\\
+        so, $h_n = c_1 (1)^n + c_2 (-2)^n + c_3n$\\
+        we have $1 =h_0 = c_1 + c_2 $ and $0 = h_1 = c_1 - 2c_2 +  c_3$ and $0 = h_2 = c_1 + 4c_2 + 2c_3$\\
+        the solution is
+        $ f(x)=\left\{
+                \begin{aligned}
+                c_1 =  \frac89 \\
+                c_2 =  \frac19\\
+                c_3 =  - \frac23\\
+                \end{aligned}
+                \right.
+                $\\
+        so, the answer is  $h_n = \frac89 + \frac19 (-2)^n - \frac23 n$
+        \end{solution*}
+        \vspace{10mm}
+        \item Supposse $a_1, \dots  , a_{65}$ is a seqence of numbers.  Suppose that for $i \neq j$ then $a_i \neq a_j$.  Then prove that either there is an increasing subsequence of length 10 or a decreasing subsequence of length 8.
+        \begin{proof}
+        By THEOREM, Every sequence of $n^2+1$ distinct real numbers contains a subsequence of length $n+1$ that is either strictly increasing or strictly decreasing.\\
+        So there are  a seqence of length 9 either increasing or decreasing.
+        \end{proof}
+        \newpage
+        \item Consider the set $S=\{1, \dots , n\}$,  and suppose $S_1$ and $S_2$ are non-emptysubsets with $S=S_1  \cup S_2 $ with $S_1 \cap S_2=\emptyset$.  Let $A\subset S\times S \times S$ be the subset consisting of elements $(x, y, z) \in S \times S \times S$ satisfying both of the following 2 conditions:
+        \begin{enumerate}
+                \item All of the elements $x, y, z$ are in $S_1$ or all of the elements $x, y, z$ are in $S_2$.
+                \item $x+y+z $ is divisible by $n$
+        \end{enumerate}
+        Question: Determine  all  the  possible  values  of $n$ for  which  there  exists  non-empty subsets $S_1, S_2$ such that$ \{1,  \dots , n\}=S_1 \cup S_2$ ,$S_1 \cap S_2=\emptyset$ and with the above definition $ |A|= 36$?
+        
+\end{enumerate}
+\end{document}

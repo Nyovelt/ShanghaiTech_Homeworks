@@ -1,0 +1,107 @@
+% !TEX program = xelatex
+
+\documentclass{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[left=1.0cm,right=1.0cm,top=1.3cm,bottom=1.3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{ctex}
+\usepackage{xpatch}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+
+
+\newtheoremstyle{break}
+    {\topsep}{\topsep}%
+    {\itshape}{}%
+    {\bfseries}{}%
+    {\newline}{}%
+\theoremstyle{break}
+\newtheorem*{solution*}{\textbf{Solution:} }
+%\newtheorem*{proof*}{\textbf{Proof:}}
+\makeatletter
+
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+
+\pagestyle{fancy}
+\lhead{Name}
+\chead{\textbf{Discrete Mathematics:  Homework 4}}
+\rhead{2020.3.28}
+\renewcommand{\baselinestretch}{1.5}
+
+\title{Discrete Mathematics:  Homework 4}
+\author{Name  \quad  \quad ID: Number}
+\date{2020.3.28}
+
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+        \item Show that a set S is infinite if and only if there is a proper subset A $\subset$ S such that |A|=|S|
+        \begin{solution*}
+            Prove \textbf{ONLY IF}:\\
+            If S is infinite and countable, there exists an infinite subset $ \{  S_1, S_2, S_3, \dots \}  \subset S$ \\
+            Let $A = \{ S_{i+1} \}$ and $A \subset S$\\
+            $|A| = \infty -1 = |S| = \infty$\\ \\
+            Prove \textbf{IF}:\\
+            Suppose S is finite, $\forall i \in \mathbb{N}^*, A = {a_i}, S={s_i}, a_i = s_i, |S| = |A|$.\\
+            Because $A \subset S$, $\exists b \in (S-A) \neq \emptyset$, but b doesn't exist.\\
+            So S is not finite. S is infinite.\\
+        \end{solution*}
+        \item  Prove or disprove$ | \{(x, y)\in R^2 : x^2 + y^2= 1\}|=|R| $.
+        \begin{solution*}
+            f: (x,y) $\to \mathbb{R} :  (x,y) \mapsto \frac{y}{x} $ is a bijection. \\
+        \end{solution*}
+        \item Prove or disprove|\{(x, y)$\in \mathbb{R}^2 : x^2+y^2 < 1$\}|=|R| .
+        \begin{solution*}
+            f: (x,y) $\to \mathbb{R}: (x,y) \mapsto \tan(\frac{1}{2} \pi xy) $\\
+            f: $\mathbb{R} \to (x,y) : (a \in \mathbb{R}, b \in \mathbb{R} ) \mapsto ( \frac{2\arctan(a)}{\pi}, \frac{ 2\arctan(b)}{\pi})$\\
+        \end{solution*}
+        \newpage
+        \item Prove or disprove $| \{  X \subseteq \mathbb{Z}^{+} : X \ is\  a \ finite \ set \}| = | \mathbb{Z} ^{+} |$
+        \begin{solution*}
+            $A = \{  X \subseteq \mathbb{Z}^{+} : X \ is\  a \ finite \ set \} /$= {$a_i$}
+            \begin{enumerate}
+                \item  
+                $f: A \to \mathbb{Z}^+ : {a_1, a_2, \dots, a_n} \mapsto N_i = p_1^{a_1}p_2^{a_2} \dots p_n^{a_n} $ is an injection.
+                \item 
+                $\mathbb{Z}^+$ is an infinite countable set. so there exists $A = \{z_1, z_2, z_3, \dots \} \in \mathbb{Z}^+$ \\
+            \end{enumerate}
+        \end{solution*}
+        \item Prove or disprove $| \{(a_1, a_2, a_3, \dots):  a_1, a_2, a_3, \dots \in \mathbb{Z}^+\}| = | \mathbb{Z}^+ |$
+        \begin{solution*}
+            Let $A = \{(a_1, a_2, a_3, \dots):  a_1, a_2, a_3, \dots \in \mathbb{Z}^+\}$ \\
+            % Suppose that $| \{(a_1, a_2, a_3, \dots):  a_1, a_2, a_3, \dots \in \mathbb{Z}^+\}| = | \mathbb{Z}^+ |$. Then there is a bijection $f: \mathbb{Z}^+ \to A$\\
+            $A \to \mathbb{Z}^+ : a_i \mapsto i$\\
+            $\mathbb{Z}^+ \to A : i \mapsto a_i$\\
+            So, $A \to \mathbb{Z}^+ $ is a bijection.
+            % $f(1)= a_1$\\
+            % $f(2)=a_2$\\
+            % $\dots$\\
+            % $f(n) = a_n$\\
+            % Since A is an infinite set, we have $a \to \mathbb{Z}^+ $ is an injection.\\
+            % $f(a_1) = 1$\\
+        \end{solution*}
+        \item Find a countably infinite number of subsets of $\mathbb{Z}^+$,  say $A_1, A_2, \dots \in \mathbb{Z}^+$,  such that the following requirements are simultaneously satisfied: 
+        \begin{enumerate}
+            \item $A_i$ is countably infinite for every $i = 1,2, \dots $;
+            \item $A_i \cap A_j = \emptyset , \ \forall i \neq j$;
+            \item $\cup_{i=1}^{\infty} A_i = \mathbb{Z}^+$ .
+        \end{enumerate}
+        \begin{solution*}
+            Let P = $\{x | x is prime number \}$\\
+            $A_i = \{y| y=\prod_{j=0}^{j \leq \infty} {p_{j}}^{e^j}, \sum{e^j} = i\}$\\
+            e.g. $A_1 = \{1, 2, 3, \dots\}$, $A_2 = \{1\times2, 1\times3, \dots, 2 \times 2, 2 \times 3, \dots\}$\\
+            \begin{enumerate}[(1)]
+                \item It's obvius that $A_i$ is countably infinite for $i \in \mathbb{N}^*$
+                \item By Fundamental Theorem of Arithmetic, Every integer n $>$ 1 can be uniquely written as n = ${p_1}^{e_1}{p_2}^{e_2}\dots{p_r}^{e_r}$, where $p_1< p_2 < \dots < p_r $ are primes and $e_1, e_2, \dots , e_r \geq 1.$ Uniqueness gets (b) and existence gets (c).\\
+                
+            \end{enumerate}
+\
+        \end{solution*}
+    \end{enumerate}
+\end{document}
